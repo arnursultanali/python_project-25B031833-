@@ -16,8 +16,8 @@ REST API сервис для банковской системы KazBank, раз
 
 ## 🚀 Пошаговая инструкция по запуску
 
-### 1. Клонирование и переход в папку проекта
-```bash
+Клонирование и переход в папку проекта
+
 git clone <https://github.com/arnursultanali>
 cd python_project/<25B031833>/
 
@@ -79,33 +79,33 @@ curl -X GET "[http://127.0.0.1:5000/transactions?account_id=1](http://127.0.0.1:
 
 psycopg3 Cheat Sheet
 
-# Connect
+Connect
 conn = psycopg.connect("host=... dbname=... user=... password=...")
  
-# Execute a query
+Execute a query
 cur = conn.execute("SELECT ... FROM ... WHERE col = %s", (value,))
 rows = cur.fetchall()   # list of tuples
 row  = cur.fetchone()   # one tuple or None
  
-# DML
+DML
 conn.execute("INSERT INTO t (a,b) VALUES (%s,%s)", (a, b))
 conn.execute("UPDATE t SET a=%s WHERE id=%s", (a, id))
 conn.execute("DELETE FROM t WHERE id=%s", (id,))
 conn.commit()   # or conn.rollback()
  
-# Bulk insert
+Bulk insert
 conn.executemany("INSERT INTO t (a) VALUES (%s)", [(1,),(2,),(3,)])
  
-# SAVEPOINT
+SAVEPOINT
 conn.execute("SAVEPOINT sp1")
 conn.execute("ROLLBACK TO SAVEPOINT sp1")
 conn.execute("RELEASE SAVEPOINT sp1")
  
-# Isolation level
+Isolation level
 from psycopg import IsolationLevel
 conn.isolation_level = IsolationLevel.SERIALIZABLE
  
-# Pool
+Pool
 from psycopg_pool import ConnectionPool
 pool = ConnectionPool(conninfo=..., min_size=2, max_size=10)
 with pool.connection() as conn:
